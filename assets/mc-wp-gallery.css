@@ -1,0 +1,210 @@
+.mcwpgallery-gallery * {
+    box-sizing: border-box;
+}
+
+.mcwpgallery-gallery ul {
+    margin-left: -0.3em !important;
+    margin-right: -0.3em !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.mcwpgallery-gallery ul li {
+    display: inline-block;
+    list-style-type: none;
+    float: left;
+    text-align: center;
+    padding: 0.3em;
+}
+
+.mcwpgallery-gallery ul li:hover {
+    opacity: 0.8;
+}
+
+.mcwpgallery-gallery ul li a {
+    display: block;
+}
+
+.mcwpgallery-gallery ul li a img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.mcwpgallery-gallery ul li .caption {
+    display: block;
+}
+
+.mcwpgallery-gallery ul li.clearfix {
+    *zoom: 1;
+}
+
+.mcwpgallery-gallery ul {
+    *zoom: 1;
+}
+.mcwpgallery-gallery ul:before,
+.mcwpgallery-gallery ul:after {
+    content: ' ';
+    display: table;
+}
+.mcwpgallery-gallery ul:after {
+    clear: both;
+}
+
+.mcwpgallery-gallery-columns-1 > ul > li {
+    width: 100%;
+    clear: left;
+}
+.mcwpgallery-gallery-columns-2 > ul > li {
+    width: 50%;
+}
+.mcwpgallery-gallery-columns-3 > ul > li {
+    width: 33.33333%;
+}
+.mcwpgallery-gallery-columns-4 > ul > li {
+    width: 25%;
+}
+.mcwpgallery-gallery-columns-5 > ul > li {
+    width: 20%;
+}
+.mcwpgallery-gallery-columns-6 > ul > li {
+    width: 16.66667%;
+}
+.mcwpgallery-gallery-columns-7 > ul > li {
+    width: 14.28571%;
+}
+.mcwpgallery-gallery-columns-8 > ul > li {
+    width: 12.5%;
+}
+.mcwpgallery-gallery-columns-9 > ul > li {
+    width: 11.11111%;
+}
+.mcwpgallery-gallery-columns-2 > ul > li:nth-child(2n + 1),
+.mcwpgallery-gallery-columns-3 > ul > li:nth-child(3n + 1),
+.mcwpgallery-gallery-columns-4 > ul > li:nth-child(4n + 1),
+.mcwpgallery-gallery-columns-5 > ul > li:nth-child(5n + 1),
+.mcwpgallery-gallery-columns-6 > ul > li:nth-child(6n + 1),
+.mcwpgallery-gallery-columns-7 > ul > li:nth-child(7n + 1),
+.mcwpgallery-gallery-columns-8 > ul > li:nth-child(8n + 1),
+.mcwpgallery-gallery-columns-9 > ul > li:nth-child(9n + 1) {
+    clear: left;
+}
+
+/* LIGHTBOX STYLES */
+#mcwpgallery-lightbox {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(51,51,51,0.9);
+    z-index: 100;
+}
+
+#mcwpgallery-lightbox-content {
+    position: absolute;
+    top: 0;
+    background-color: #333;
+    width: 530px;
+    z-index: 101;
+    border: 1px solid #4b4b4b;
+    overflow: hidden;
+}
+
+#mcwpgallery-lightbox-content .caption {
+    margin: 0;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    color: #fff;
+}
+
+#mcwpgallery-lightbox-navigation {
+    position: absolute;
+    top: 50%;
+    margin: -.5em 0 0 0;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    font-size: 30px;
+}
+#mcwpgallery-lightbox-navigation > li a {
+    color: #fff;
+}
+#mcwpgallery-lightbox-navigation > li a .fa {
+    background: rgba(0,0,0,.3);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+#mcwpgallery-lightbox-navigation > li a:hover .fa {
+    background: rgba(0,0,0,.8);
+}
+#mcwpgallery-lightbox-navigation .prev {
+    float: left;
+    padding-left: 10px;
+    text-indent: -.15em;
+}
+#mcwpgallery-lightbox-navigation .next {
+    float: right;
+    padding-right: 10px;
+    text-indent: .15em;
+}
+
+#mcwpgallery-lightbox-navigation-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 25px;
+}
+#mcwpgallery-lightbox-navigation-close > li {
+    line-height: 1;
+}
+#mcwpgallery-lightbox-navigation-close > li a {
+    color: #fff;
+    text-decoration: none;
+}
+#mcwpgallery-lightbox-navigation-close > li a .fa {
+    display: block;
+    background: rgba(0,0,0,.3);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+#mcwpgallery-lightbox-navigation-close > li a:hover .fa {
+    background: rgba(0,0,0,.8);
+}
+
+/* LOADING */
+#mcwpgallery-lightbox-content.loading {
+    height: 100px;
+    width: 100px;
+}
+#mcwpgallery-lightbox-content.loading:after {
+    content: "\f110";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    position: relative;
+    top: 50%;
+    color: #fff;
+    font-size: 50px;
+    margin: -.5em; auto 0 auto;
+    display: block;
+    text-align: center;
+    -webkit-animation: fa-spin 1s infinite steps(8);
+    animation: fa-spin 1s infinite steps(8);
+}
+#mcwpgallery-lightbox-content.loading > * {
+    xdisplay: none !important;
+}
