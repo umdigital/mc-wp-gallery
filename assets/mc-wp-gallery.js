@@ -1,12 +1,22 @@
 (function($){
 $(document).ready(function(){
+    // look for images wrapped in a link
+    $('a > img[class*="wp-image-"]').each(function(){
+        var ext   = $(this).attr('src').match(/\.[a-z]{3}$/)[0];
+        var regex = new RegExp( ext +'$' );
+        
+        if( $(this).parent().attr('href').match( regex ) ) {
+            $(this).parent().addClass('mcwpgallery-lightbox');
+        }
+    });
+
     // add unique id to each gallery
     $('.mcwpgallery-gallery').each(function( index ){
         $(this).attr( 'id', 'mcwpgallery-gallery-id-'+ (index + 1) );
     });
 
     /* INITIALIZE LIGHTBOX / GO TO IMAGE */
-    $('.mcwpgallery-gallery > ul > li > a').click(function( event ){
+    $('.mcwpgallery-gallery a, a.mcwpgallery-lightbox').click(function( event ){
         event.preventDefault();
 
         var thisGallery = $(this).closest('.mcwpgallery-gallery').attr('id');
@@ -19,6 +29,11 @@ $(document).ready(function(){
 
         var image   = $(this).attr('href');
         var caption = $(this).find('img').attr('alt');
+
+        // for single linked image caption
+        if( $(this).hasClass('mcwpgallery-lightbox') && $(this).closest('.wp-caption').length ) {
+            caption = $(this).closest('.wp-caption').find('.wp-caption-text').text();
+        }
 
         // create lightbox if it doesn't exist
         if( !$('#mcwpgallery-lightbox').length ) {
