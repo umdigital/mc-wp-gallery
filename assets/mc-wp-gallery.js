@@ -16,7 +16,7 @@ $(document).ready(function(){
     });
 
     /* INITIALIZE LIGHTBOX / GO TO IMAGE */
-    $('.mcwpgallery-gallery a, a.mcwpgallery-lightbox').click(function( event ){
+    $('.mcwpgallery-lightbox a, a.mcwpgallery-lightbox').click(function( event ){
         event.preventDefault();
 
         var thisGallery = $(this).closest('.mcwpgallery-gallery').attr('id');

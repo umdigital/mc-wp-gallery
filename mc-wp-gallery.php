@@ -3,7 +3,7 @@
 Plugin Name: MC WP Gallery
 Plugin URI: https://github.com/umichcreative/mc-wp-gallery/
 Description: Wordpress gallery enhancements. Responsive layout, lightbox view, maybe more things.
-Version: 1.0
+Version: 1.0.1
 Author: U-M: Michigan Creative
 Author URI: http://creative.umich.edu
 */
@@ -144,6 +144,11 @@ class MCWPGallery
         $classes[] = 'mcwpgallery-gallery-id-'. $id;
         $classes[] = 'mcwpgallery-gallery-columns-'. $columns;
         $classes[] = 'mcwpgallery-gallery-size-'. $size;
+
+        // only lightbox if we are linking to the file
+        if( $link == 'file' ) {
+            $classes[] = 'mcwpgallery-lightbox';
+        }
 
         $return = '<div class="'. implode( ' ', $classes ) .'"><ul>';
 
