@@ -1,3 +1,7 @@
+1.0.2 (2017-06-29)
+==================
+bugfix for caption height calculation when navigating between slides
+
 1.0.1 (2017-05-31)
 ==================
 bugfix for galleries not linked to the Media File

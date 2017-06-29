@@ -119,7 +119,7 @@ $(document).ready(function(){
                     $(this).prependTo('#mcwpgallery-lightbox-content');
 
                     // attempt to determine what the real height would be
-                    var capHeight = $(this).parent().find('.caption').css('width', width ).show().outerHeight();
+                    var capHeight = $(this).parent().find('.caption:last-child').css('width', width ).show().outerHeight();
                     $(this).parent().find('.caption').css('width','').hide();
 
                     if( (height + capHeight) > winHeight ) {
