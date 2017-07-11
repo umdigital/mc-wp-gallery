@@ -1,3 +1,8 @@
+1.0.3 (2017-07-11)
+==================
+bugfix for caption height calculation
+resize and position lightbox on window resize event
+
 1.0.2 (2017-06-29)
 ==================
 bugfix for caption height calculation when navigating between slides

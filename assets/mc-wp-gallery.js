@@ -110,25 +110,46 @@ $(document).ready(function(){
             // show the lightbox content and then resize when the image has loaded
             $('#mcwpgallery-lightbox-content').fadeIn('slow', function(){
                 $('<img/>').load(function(){
+                    $(this).data( 'orgHeight', this.height )
+                           .data( 'orgWidth', this.width );
+
                     // determine new lightbox height/width/position
-                    var height = this.height * .95;
-                    var width  = this.width * .95;
+                    var height = this.height;
+                    var width  = this.width;
+                    var maxHeight = winHeight * .95;
+                    var maxWidth  = winWidth  * .95;
 
                     // for wider browser support we need to do this after we get the real dimensions of the img
                     // but before we get the caption dimensions
                     $(this).prependTo('#mcwpgallery-lightbox-content');
 
+                    var thisCap = $(this).parent().find('.caption:last-child');
+
                     // attempt to determine what the real height would be
-                    var capHeight = $(this).parent().find('.caption:last-child').css('width', width ).show().outerHeight();
-                    $(this).parent().find('.caption').css('width','').hide();
+                    // @NOTE: use min width of the img or the window width to determine caption height
+                    var capHeight = thisCap.css(
+                        'width', Math.min( maxWidth, width )
+                    ).show().outerHeight();
+                    thisCap.css('width','').hide();
 
-                    if( (height + capHeight) > winHeight ) {
-                        var newHeight = (winHeight - capHeight) *.95;
+                    if( (height + capHeight) > maxHeight ) {
+                        var newHeight = height;
+                        var newWidth  = width;
 
-                        $(this).height( newHeight )
-                            .width( width * (newHeight / height) );
+                        // keep resizing img based on caption height change due to maxwidth change
+                        while( (newHeight + capHeight) > winHeight ) {
+                            newHeight = maxHeight - capHeight;
+                            newWidth  = width * (newHeight / height);
 
-                        width  = width * (newHeight / height);
+                            capHeight = thisCap.css(
+                                'width', newWidth
+                            ).show().outerHeight();
+                            thisCap.css('width','').hide();
+                        }
+
+                        $(this).height( newHeight ).width( newWidth );
+
+                        width  = newWidth;
                         height = newHeight;
                     }
 
@@ -137,6 +158,11 @@ $(document).ready(function(){
 
                         $(this).width( newWidth )
                             .height( height * (newWidth / width) );
+
+                        capHeight = thisCap.css(
+                            'width', newWidth
+                        ).outerHeight();
+                        thisCap.css('width','');
 
                         height = height * (newWidth / width);
                         width  = newWidth;
@@ -169,9 +195,86 @@ $(document).ready(function(){
                 .attr( 'src', image )
                 .css( 'display', 'none' )
                 .attr( 'index', index );
-                //.prependTo('#mcwpgallery-lightbox-content');
             });
         });
+    });
+
+    $(window).resize(function(){
+        if( $('#mcwpgallery-lightbox').length ) {
+            var thisImg = $('#mcwpgallery-lightbox img');
+            var thisCap = $('#mcwpgallery-lightbox .caption');
+
+            // determine lightbox content position
+            var winHeight = window.innerHeight ? window.innerHeight : $(window).height();
+                winHeight = winHeight - $('#wpadminbar').height();
+            var winWidth  = $(window).width();
+
+            var lbBorderH = $('#mcwpgallery-lightbox-content').height() - $('#mcwpgallery-lightbox-content').innerHeight();
+            lbBorderH = lbBorderH ? lbBorderH : 2;
+            var lbBorderW = $('#mcwpgallery-lightbox-content').width() - $('#mcwpgallery-lightbox-content').innerWidth();
+            lbBorderW = lbBorderW ? lbBorderW : 2;
+
+            // determine new lightbox height/width/position
+            var height = thisImg.data('orgHeight');
+            var width  = thisImg.data('orgWidth');
+            var maxHeight = winHeight * .95;
+            var maxWidth  = winWidth  * .95;
+
+            // attempt to determine what the real height would be
+            // @NOTE: use min width of the img or the window width to determine caption height
+            var capHeight = thisCap.css(
+                'width', Math.min( maxWidth, width )
+            ).outerHeight();
+            thisCap.css('width','');
+
+            if( (height + capHeight) > maxHeight ) {
+                var newHeight = height;
+                var newWidth  = width;
+
+                // keep resizing img based on caption height change due to maxwidth change
+                while( (newHeight + capHeight) > winHeight ) {
+                    newHeight = maxHeight - capHeight;
+                    newWidth  = width * (newHeight / height);
+
+                    capHeight = thisCap.css(
+                        'width', newWidth
+                    ).outerHeight();
+                    thisCap.css('width','');
+                }
+
+                width  = newWidth;
+                height = newHeight;
+            }
+
+            if( width > winWidth ) {
+                var newWidth = winWidth * .95;
+
+                capHeight = thisCap.css(
+                    'width', newWidth
+                ).outerHeight();
+                thisCap.css('width','');
+
+                height = height * (newWidth / width);
+                width  = newWidth;
+            }
+
+            thisImg.height( height ).width( width );
+            $('#mcwpgallery-lightbox-content').stop( true )
+                .width( width + lbBorderW )
+                .height( height + capHeight + lbBorderH );
+
+            var topPos  = (winHeight - height - capHeight - lbBorderH) / 2;
+            var leftPos = (winWidth - width - lbBorderW) / 2;
+
+            // resize/reposition lightbox content area
+            $('#mcwpgallery-lightbox-content').stop( true )
+                .animate({
+                    'top'   : topPos + $('#wpadminbar').height(),
+                    'left'  : leftPos,
+                    'height': height + capHeight + lbBorderH,
+                    'width' : width + lbBorderW
+                }, 500 );
+        }
     });
 
     /* LIGHTBOX GALLERY PREV/NEXT CONTROLS */
