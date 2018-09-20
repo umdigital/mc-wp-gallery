@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: MC WP Gallery
-Plugin URI: https://github.com/umichcreative/mc-wp-gallery/
+Plugin Name: University of Michigan: Image Gallery
+Plugin URI: https://github.com/umdigital/mc-wp-gallery/
 Description: Wordpress gallery enhancements. Responsive layout, lightbox view, maybe more things.
-Version: 1.0.4
-Author: U-M: Michigan Creative
-Author URI: http://creative.umich.edu
+Version: 1.0.5
+Author: U-M: Digital
+Author URI: http://vpcomm.umich.edu
 */
 
 define( 'MCWPGALLERY_PATH', dirname( __FILE__ ) . DIRECTORY_SEPARATOR );
@@ -28,13 +28,13 @@ class MCWPGallery
                 // this is the name of the folder your plugin lives in
                 'proper_folder_name' => dirname( plugin_basename( __FILE__ ) ),
                 // the github API url of your github repo
-                'api_url' => 'https://api.github.com/repos/umichcreative/mc-wp-gallery',
+                'api_url' => 'https://api.github.com/repos/umdigital/mc-wp-gallery',
                 // the github raw url of your github repo
-                'raw_url' => 'https://raw.githubusercontent.com/umichcreative/mc-wp-gallery/master',
+                'raw_url' => 'https://raw.githubusercontent.com/umdigital/mc-wp-gallery/master',
                 // the github url of your github repo
-                'github_url' => 'https://github.com/umichcreative/mc-wp-gallery',
+                'github_url' => 'https://github.com/umdigital/mc-wp-gallery',
                  // the zip url of the github repo
-                'zip_url' => 'https://github.com/umichcreative/mc-wp-gallery/zipball/master',
+                'zip_url' => 'https://github.com/umdigital/mc-wp-gallery/zipball/master',
                 // wether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
                 'sslverify' => true,
                 // which version of WordPress does your plugin require?

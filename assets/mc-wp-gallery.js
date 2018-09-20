@@ -53,7 +53,7 @@ $(document).ready(function(){
             $('#mcwpgallery-lightbox-content').addClass( 'loading' );
         }
 
-        if( $(this).closest('ul').find('li').length > 1 ) {
+        if( $(this).closest('.mcwpgallery-lightbox').find('ul li').length > 1 ) {
             // see if we are at the begining of the list
             var previousHtml = '<li class="prev"><a href="#"><i index="'+ pIndex +'" class="fa fa-chevron-left"></i></a></li>';
             if( pIndex < 0 ) {
