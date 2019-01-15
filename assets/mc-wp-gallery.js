@@ -2,7 +2,7 @@
 $(document).ready(function(){
     // look for images wrapped in a link
     $('a > img[class*="wp-image-"]').each(function(){
-        var ext   = $(this).attr('src').match(/\.[a-z]{3}$/)[0];
+        var ext   = $(this).attr('src').match(/\.[a-z]{3,4}$/)[0];
         var regex = new RegExp( ext +'$' );
         
         if( $(this).parent().attr('href').match( regex ) ) {
