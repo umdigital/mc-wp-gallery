@@ -1,3 +1,7 @@
+1.1 (2019-07-12)
+================
+Add gutenberg gallery block support
+
 1.0.6 (2018-08-20)
 ==================
 Fix bug on JS image file extension detection.

@@ -4,9 +4,31 @@ $(document).ready(function(){
     $('a > img[class*="wp-image-"]').each(function(){
         var ext   = $(this).attr('src').match(/\.[a-z]{3,4}$/)[0];
         var regex = new RegExp( ext +'$' );
-        
+
         if( $(this).parent().attr('href').match( regex ) ) {
-            $(this).parent().addClass('mcwpgallery-lightbox');
+            var thisGallery = $(this).closest('ul.wp-block-gallery')
+            if( thisGallery.length ) {
+                if( !thisGallery.parent().hasClass('mcwpgallery-gallery') ) {
+                    var thisGalleryClasses     = thisGallery.attr('class').split( ' ' );
+                    var thisGalleryWrapClasses = [ 'mcwpgallery-gallery', 'mcwpgallery-lightbox' ];
+
+                    thisGalleryClasses.forEach(function( item, index ){
+                        if( item.match( /^columns-[0-9]+$/ ) ) {
+                            thisGalleryClasses.push(
+                                'mcwpgallery-gallery-'+ item
+                            );
+                        }
+                    });
+
+                    var thisGalleryWrap = $('<div/>').attr( 'id', 'mcwpgallery-gallery-id-'+ (galleryIdCounter++) )
+                        .attr( 'class', thisGalleryWrapClasses.join(' ') );
+
+                    thisGallery.wrap( thisGalleryWrap );
+                }
+            }
+            else {
+                $(this).parent().addClass('mcwpgallery-lightbox');
+            }
         }
     });
 
@@ -33,6 +55,9 @@ $(document).ready(function(){
         // for single linked image caption
         if( $(this).hasClass('mcwpgallery-lightbox') && $(this).closest('.wp-caption').length ) {
             caption = $(this).closest('.wp-caption').find('.wp-caption-text').text();
+        }
+        else if( $(this).parent().find('figcaption').length ) {
+            caption = $(this).parent().find('figcaption').text();
         }
 
         // create lightbox if it doesn't exist
