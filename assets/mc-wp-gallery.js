@@ -1,5 +1,7 @@
 (function($){
 $(document).ready(function(){
+    var galleryIdCounter = 0;
+
     // look for images wrapped in a link
     $('a > img[class*="wp-image-"]').each(function(){
         var ext   = $(this).attr('src').match(/\.[a-z]{3,4}$/)[0];
