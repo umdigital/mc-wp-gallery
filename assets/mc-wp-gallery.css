@@ -208,3 +208,16 @@
 #mcwpgallery-lightbox-content.loading > * {
     xdisplay: none !important;
 }
+
+
+/* ERROR */
+#mcwpgallery-lightbox-content.error {
+    width: auto;
+    padding: 15px;
+    color: #fff;
+    text-align: center;
+}
+#mcwpgallery-lightbox-content.error h3 {
+    text-transform: uppercase;
+    color: #fff;
+}

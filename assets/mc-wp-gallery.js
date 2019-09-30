@@ -214,10 +214,19 @@ $(document).ready(function(){
                         });
                 })
                 .error(function(){ // try again, append timestamp to avoid caching
-                    $(this).attr(
-                        'src',
-                        $(this).attr( 'src' ) + '?time=' + new Date().getTime()
-                    );
+                    if( !$(this).attr( 'src' ).match(/\?time=[0-9]+/) ) {
+                        $(this).attr(
+                            'src',
+                            $(this).attr( 'src' ) + '?time=' + new Date().getTime()
+                        );
+                    }
+                    else {
+                        $('#mcwpgallery-lightbox-content')
+                            .html( '<h3>Error!</h3><p>Unable to load image.</p>' )
+                            .css( 'width', 'auto' )
+                            .removeClass('loading')
+                            .addClass('error');
+                    }
                 })
                 .attr( 'src', image )
                 .css( 'display', 'none' )
