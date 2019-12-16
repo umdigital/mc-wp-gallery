@@ -8,7 +8,7 @@ $(document).ready(function(){
         var regex = new RegExp( ext +'$' );
 
         if( $(this).parent().attr('href').match( regex ) ) {
-            var thisGallery = $(this).closest('ul.wp-block-gallery')
+            var thisGallery = $(this).closest('.wp-block-gallery')
             if( thisGallery.length ) {
                 if( !thisGallery.parent().hasClass('mcwpgallery-gallery') ) {
                     var thisGalleryClasses     = thisGallery.attr('class').split( ' ' );
