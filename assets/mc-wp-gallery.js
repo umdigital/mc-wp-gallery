@@ -136,7 +136,7 @@ $(document).ready(function(){
         $('#mcwpgallery-lightbox').fadeIn(function(){
             // show the lightbox content and then resize when the image has loaded
             $('#mcwpgallery-lightbox-content').fadeIn('slow', function(){
-                $('<img/>').load(function(){
+                $('<img/>').on('load', function(){
                     $(this).data( 'orgHeight', this.height )
                            .data( 'orgWidth', this.width );
 
