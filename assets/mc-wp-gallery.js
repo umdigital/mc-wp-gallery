@@ -70,6 +70,8 @@ $(document).ready(function(){
                 .css( 'display', 'none' )
                 .append( '<div id="mcwpgallery-lightbox-content" style="display: none;" class="loading" />' )
                 .appendTo( 'body' );
+
+            $('html').addClass('mcwpgallery-active');
         }
         // reset lightbox, stop anything in process
         else {
@@ -313,6 +315,13 @@ $(document).ready(function(){
         }
     });
 
+    $(document).on('swiped-left', '#mcwpgallery-lightbox', function( event ){
+        $('#mcwpgallery-lightbox-navigation li.next i').trigger('click');
+    });
+    $(document).on('swiped-right', '#mcwpgallery-lightbox', function( event ){
+        $('#mcwpgallery-lightbox-navigation li.prev i').trigger('click');
+    });
+
     /* LIGHTBOX GALLERY PREV/NEXT CONTROLS */
     $(document).on( 'click touchstart', '#mcwpgallery-lightbox-navigation li i', function( event ){
         event.preventDefault();
@@ -334,6 +343,7 @@ $(document).ready(function(){
 
         $('#mcwpgallery-lightbox, #mcwpgallery-lightbox-content').fadeOut( 'slow', function(){              
             $(this).remove();
+            $('html').removeClass('mcwpgallery-active');
         });
     });
 
@@ -345,6 +355,7 @@ $(document).ready(function(){
                 case 27:
                     $('#mcwpgallery-lightbox, #mcwpgallery-lightbox-content').fadeOut( 'slow', function(){
                         $(this).remove();
+                        $('html').removeClass('mcwpgallery-active');
                     });
                     break;
 

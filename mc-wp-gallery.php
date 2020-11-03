@@ -3,7 +3,7 @@
 Plugin Name: University of Michigan: Image Gallery
 Plugin URI: https://github.com/umdigital/mc-wp-gallery/
 Description: Wordpress gallery enhancements. Responsive layout, lightbox view, maybe more things.
-Version: 1.1.4
+Version: 1.2
 Author: U-M: Digital
 Author URI: http://vpcomm.umich.edu
 */
@@ -12,6 +12,8 @@ define( 'MCWPGALLERY_PATH', dirname( __FILE__ ) . DIRECTORY_SEPARATOR );
 
 class MCWPGallery
 {
+    static $_version = '1.2';
+
     static public function init()
     {
         // UPDATER SETUP
@@ -55,8 +57,9 @@ class MCWPGallery
 
     static public function enqueue()
     {
-        wp_enqueue_style( 'mcwpgallery', plugins_url( 'assets/mc-wp-gallery.css', __FILE__ ) );
-        wp_enqueue_script( 'mcwpgallery', plugins_url( 'assets/mc-wp-gallery.js', __FILE__ ), array( 'jquery' ) );
+        wp_enqueue_style( 'mcwpgallery', plugins_url( 'assets/mc-wp-gallery.css', __FILE__ ), array(), self::$_version );
+        wp_enqueue_script( 'mcwpgallery-swiped-events', plugins_url( 'assets/swiped-events.js', __FILE__ ), array( 'jquery' ), self::$_version );
+        wp_enqueue_script( 'mcwpgallery', plugins_url( 'assets/mc-wp-gallery.js', __FILE__ ), array( 'jquery' ), self::$_version );
     }
 
     static public function shortcodeGallery( $content, $atts )
