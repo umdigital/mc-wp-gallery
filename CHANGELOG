@@ -1,3 +1,7 @@
+1.2.1 (2021-02-02)
+==================
+fix lightbox positioning bug when image has no caption
+
 1.2 (2020-11-03)
 =================
 added swipe left/right functionality

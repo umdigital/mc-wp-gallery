@@ -152,14 +152,17 @@ $(document).ready(function(){
                     // but before we get the caption dimensions
                     $(this).prependTo('#mcwpgallery-lightbox-content');
 
-                    var thisCap = $(this).parent().find('.caption:last-child');
+                    var thisCap   = $(this).parent().find('.caption:last-child');
+                    var capHeight = 0;
 
                     // attempt to determine what the real height would be
                     // @NOTE: use min width of the img or the window width to determine caption height
-                    var capHeight = thisCap.css(
-                        'width', Math.min( maxWidth, width )
-                    ).show().outerHeight();
-                    thisCap.css('width','').hide();
+                    if( thisCap.length ) {
+                        capHeight = thisCap.css(
+                            'width', Math.min( maxWidth, width )
+                        ).show().outerHeight();
+                        thisCap.css('width','').hide();
+                    }
 
                     if( (height + capHeight) > maxHeight ) {
                         var newHeight = height;
@@ -170,10 +173,12 @@ $(document).ready(function(){
                             newHeight = maxHeight - capHeight;
                             newWidth  = width * (newHeight / height);
 
-                            capHeight = thisCap.css(
-                                'width', newWidth
-                            ).show().outerHeight();
-                            thisCap.css('width','').hide();
+                            if( thisCap.length ) {
+                                capHeight = thisCap.css(
+                                    'width', newWidth
+                                ).show().outerHeight();
+                                thisCap.css('width','').hide();
+                            }
                         }
 
                         $(this).height( newHeight ).width( newWidth );
@@ -188,10 +193,12 @@ $(document).ready(function(){
                         $(this).width( newWidth )
                             .height( height * (newWidth / width) );
 
-                        capHeight = thisCap.css(
-                            'width', newWidth
-                        ).outerHeight();
-                        thisCap.css('width','');
+                        if( thisCap.length ) {
+                            capHeight = thisCap.css(
+                                'width', newWidth
+                            ).outerHeight();
+                            thisCap.css('width','');
+                        }
 
                         height = height * (newWidth / width);
                         width  = newWidth;
@@ -239,8 +246,9 @@ $(document).ready(function(){
 
     $(window).resize(function(){
         if( $('#mcwpgallery-lightbox').length ) {
-            var thisImg = $('#mcwpgallery-lightbox img');
-            var thisCap = $('#mcwpgallery-lightbox .caption');
+            var thisImg   = $('#mcwpgallery-lightbox img');
+            var thisCap   = $('#mcwpgallery-lightbox .caption');
+            var capHeight = 0;
 
             // determine lightbox content position
             var winHeight = window.innerHeight ? window.innerHeight : $(window).height();
@@ -260,10 +268,12 @@ $(document).ready(function(){
 
             // attempt to determine what the real height would be
             // @NOTE: use min width of the img or the window width to determine caption height
-            var capHeight = thisCap.css(
-                'width', Math.min( maxWidth, width )
-            ).outerHeight();
-            thisCap.css('width','');
+            if( thisCap.length ) {
+                capHeight = thisCap.css(
+                    'width', Math.min( maxWidth, width )
+                ).outerHeight();
+                thisCap.css('width','');
+            }
 
             if( (height + capHeight) > maxHeight ) {
                 var newHeight = height;
@@ -274,10 +284,12 @@ $(document).ready(function(){
                     newHeight = maxHeight - capHeight;
                     newWidth  = width * (newHeight / height);
 
-                    capHeight = thisCap.css(
-                        'width', newWidth
-                    ).outerHeight();
-                    thisCap.css('width','');
+                    if( thisCap.length ) {
+                        capHeight = thisCap.css(
+                            'width', newWidth
+                        ).outerHeight();
+                        thisCap.css('width','');
+                    }
                 }
 
                 width  = newWidth;
@@ -287,10 +299,12 @@ $(document).ready(function(){
             if( width > winWidth ) {
                 var newWidth = winWidth * .95;
 
-                capHeight = thisCap.css(
-                    'width', newWidth
-                ).outerHeight();
-                thisCap.css('width','');
+                if( thisCap.length ) {
+                    capHeight = thisCap.css(
+                        'width', newWidth
+                    ).outerHeight();
+                    thisCap.css('width','');
+                }
 
                 height = height * (newWidth / width);
                 width  = newWidth;
