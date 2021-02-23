@@ -3,7 +3,7 @@
 Plugin Name: University of Michigan: Image Gallery
 Plugin URI: https://github.com/umdigital/mc-wp-gallery/
 Description: Wordpress gallery enhancements. Responsive layout, lightbox view, maybe more things.
-Version: 1.2.1
+Version: 1.2.2
 Author: U-M: Digital
 Author URI: http://vpcomm.umich.edu
 */

@@ -109,8 +109,9 @@ $(document).ready(function(){
             .appendTo( '#mcwpgallery-lightbox-content' );
 
         // determine lightbox content position
+        var adminBarHeight = ($('#wpadminbar').length ? $('#wpadminbar').height() : 0);
         var winHeight = window.innerHeight ? window.innerHeight : $(window).height();
-            winHeight = winHeight - $('#wpadminbar').height();
+            winHeight = winHeight - adminBarHeight;
         var winWidth  = $(window).width();
 
         var height = $('#mcwpgallery-lightbox-content').height();
@@ -123,7 +124,7 @@ $(document).ready(function(){
 
         // set initial position of the content box
         $('#mcwpgallery-lightbox-content').css({
-            top: ((winHeight - height - lbBorderH) / 2) + $('#wpadminbar').height(),
+            top: ((winHeight - height - lbBorderH) / 2) + adminBarHeight,
             left: (winWidth - width - lbBorderW) / 2
         });
 
@@ -210,7 +211,7 @@ $(document).ready(function(){
                     // resize/reposition lightbox content area
                     $('#mcwpgallery-lightbox-content')
                         .animate({
-                            'top'   : topPos + $('#wpadminbar').height(),
+                            'top'   : topPos + adminBarHeight,
                             'left'  : leftPos,
                             'height': height + capHeight + lbBorderH,
                             'width' : width + lbBorderW
@@ -251,8 +252,9 @@ $(document).ready(function(){
             var capHeight = 0;
 
             // determine lightbox content position
+            var adminBarHeight = ($('#wpadminbar').length ? $('#wpadminbar').height() : 0);
             var winHeight = window.innerHeight ? window.innerHeight : $(window).height();
-                winHeight = winHeight - $('#wpadminbar').height();
+                winHeight = winHeight - adminBarHeight;
             var winWidth  = $(window).width();
 
             var lbBorderH = $('#mcwpgallery-lightbox-content').height() - $('#mcwpgallery-lightbox-content').innerHeight();
@@ -321,7 +323,7 @@ $(document).ready(function(){
             // resize/reposition lightbox content area
             $('#mcwpgallery-lightbox-content').stop( true )
                 .animate({
-                    'top'   : topPos + $('#wpadminbar').height(),
+                    'top'   : topPos + adminBarHeight,
                     'left'  : leftPos,
                     'height': height + capHeight + lbBorderH,
                     'width' : width + lbBorderW
