@@ -8,6 +8,7 @@ html.mcwpgallery-active body {
     box-sizing: border-box;
 }
 
+.mcwpgallery-gallery .wp-block-gallery,
 .mcwpgallery-gallery ul {
     margin-left: -0.3em !important;
     margin-right: -0.3em !important;
@@ -22,6 +23,7 @@ html.mcwpgallery-active body {
     text-align: center;
     padding: 0.3em;
 }
+.mcwpgallery-gallery .wp-block-gallery figure.wp-block-image,
 .mcwpgallery-gallery .wp-block-gallery .blocks-gallery-item {
     padding: 0.3em;
     margin: 0;
