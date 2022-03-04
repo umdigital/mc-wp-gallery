@@ -45,8 +45,8 @@ $(document).ready(function(){
 
         var thisGallery = $(this).closest('.mcwpgallery-gallery').attr('id');
 
-        var index = $(this).closest('li').index();
-        var total = $(this).closest('ul').find('li:visible').length;
+        var index = $(this).closest('li, .wp-block-image').index();
+        var total = $(this).closest('ul, .wp-block-gallery').find('li:visible, .wp-block-image:visible').length;
 
         var pIndex = index - 1;
         var nIndex = index + 1;
@@ -82,7 +82,7 @@ $(document).ready(function(){
             $('#mcwpgallery-lightbox-content').addClass( 'loading' );
         }
 
-        if( $(this).closest('.mcwpgallery-lightbox').find('ul li').length > 1 ) {
+        if( $(this).closest('.mcwpgallery-lightbox').find('ul li, .wp-block-image').length > 1 ) {
             // see if we are at the begining of the list
             var previousHtml = '<li class="prev"><a href="#"><i index="'+ pIndex +'" class="fa fa-chevron-left"></i></a></li>';
             if( pIndex < 0 ) {
@@ -346,7 +346,7 @@ $(document).ready(function(){
 
         var thisGallery = $('#mcwpgallery-lightbox').attr( 'gallery' );
 
-        $( '#'+ thisGallery +' ul li').eq( index ).find( 'img' ).trigger( 'click' );
+        $( '#'+ thisGallery +' ul li, #'+ thisGallery +' .wp-block-image').eq( index ).find( 'img' ).trigger( 'click' );
     });
 
     /* REMOVE LIGHTBOX */
